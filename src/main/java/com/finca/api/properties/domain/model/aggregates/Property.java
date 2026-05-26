@@ -283,7 +283,6 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
         if (image.isCover()) unsetCurrentCover();
         image.setProperty(this);
         this.images.add(image);
-        validateExactlyOneCover(this.images);
     }
 
     // Updating an existing image in the album; checks for unique display order and cover image rules
@@ -292,12 +291,15 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
         PropertyImage target = findImageById(imageId);
         boolean orderTakenByOther = this.images.stream()
                 .anyMatch(i -> !i.getId().equals(imageId)
-                               && i.getDisplayOrder().equals(displayOrder));
-        if (orderTakenByOther) throw new IllegalArgumentException(
-                "Display order " + displayOrder + " is already taken in this album");
-        if (isCover) unsetCurrentCover();
+                        && i.getDisplayOrder().equals(displayOrder));
+        if (orderTakenByOther) {
+            throw new IllegalArgumentException(
+                    "Display order " + displayOrder + " is already taken in this album");
+        }
+        if (isCover) {
+            unsetCurrentCover();
+        }
         target.update(fileName, filePath, displayOrder, isCover);
-        validateExactlyOneCover(this.images);
     }
 
     // Removing an image from the album; checks that the cover image is not removed if other images exist
@@ -307,7 +309,6 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
             throw new IllegalArgumentException("Property must have at least one image");
         }
         this.images.remove(target);
-        validateExactlyOneCover(this.images);
     }
 
 
@@ -362,7 +363,7 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
                         img.fileName(),
                         img.filePath(),
                         img.displayOrder(),
-                        Boolean.TRUE.equals(img.isCover())
+                        Boolean.TRUE.equals(img.cover())
                 ));
         // ADD
         command.newImages().forEach(img -> {
@@ -373,5 +374,7 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
                     img.isCover());
             addImageToAlbum(image);
         });
+        validateExactlyOneCover(this.images);
+
     }
 }

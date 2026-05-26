@@ -5,7 +5,7 @@ public record UpdateImageFromAlbumCommand(
         String fileName,
         String filePath,
         Integer displayOrder,
-        Boolean isCover
+        Boolean cover
 ) {
     public UpdateImageFromAlbumCommand {
         if (imageId == null || imageId <= 0) {
