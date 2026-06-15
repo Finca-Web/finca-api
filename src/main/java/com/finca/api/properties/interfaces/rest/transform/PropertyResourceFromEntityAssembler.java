@@ -13,6 +13,8 @@ public class PropertyResourceFromEntityAssembler {
                 entity.getDepartment().getDisplayName(),
                 entity.getDistrict() != null ? entity.getDistrict().getDisplayName() : null,
                 entity.getAddress(),
+                entity.getLongitude(),
+                entity.getLatitude(),
                 entity.getPropertyType().getDisplayName(),
                 entity.getOperationType().getDisplayName(),
                 entity.getTotalArea(),

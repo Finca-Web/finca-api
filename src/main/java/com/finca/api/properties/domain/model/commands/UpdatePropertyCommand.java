@@ -13,6 +13,8 @@ public record UpdatePropertyCommand(
         EDepartments department,
         EDistricts district,
         String address,
+        Double longitude,
+        Double latitude,
         EPropertyType propertyType,
         EOperationType operationType,
         Double totalArea,

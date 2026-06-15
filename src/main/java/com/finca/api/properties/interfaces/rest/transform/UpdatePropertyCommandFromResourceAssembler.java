@@ -50,6 +50,8 @@ public class UpdatePropertyCommandFromResourceAssembler {
                 resource.department(),
                 resource.district(),
                 resource.address(),
+                resource.longitude(),
+                resource.latitude(),
                 resource.propertyType(),
                 resource.operationType(),
                 resource.totalArea(),
