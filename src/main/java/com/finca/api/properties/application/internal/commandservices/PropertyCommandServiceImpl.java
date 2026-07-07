@@ -36,6 +36,8 @@ public class PropertyCommandServiceImpl implements PropertyCommandService {
                 command.department(),
                 command.district(),
                 command.address(),
+                command.longitude(),
+                command.latitude(),
                 command.propertyType(),
                 command.operationType(),
                 command.totalArea(),
