@@ -14,6 +14,8 @@ public record PropertyResource(
         String department,
         String district,
         String address,
+        Double longitude,
+        Double latitude,
         String propertyType,
         String operationType,
         Double totalArea,
