@@ -66,7 +66,7 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
     @Column(name = "parkings")
     private Integer parkings;
 
-    @Column(name = "description", nullable = false, length = 1000)
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "documentation_url")
