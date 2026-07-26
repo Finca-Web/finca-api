@@ -364,21 +364,20 @@
                         "Property must always have exactly one cover image");
             }
         }
-    
+
         private void albumUpdate(UpdatePropertyCommand command) {
             // DELETE
-            command.deletedImages().forEach(img ->
-                    removeImageFromAlbum(img.imageId())
-            );
+            command.deletedImages().forEach(img -> {
+                PropertyImage target = findImageById(img.imageId());
+                this.images.remove(target);
+            });
+
             // UPDATE
-            command.updatedImages().forEach(img ->
-                    updateImageInAlbum(
-                            img.imageId(),
-                            img.fileName(),
-                            img.filePath(),
-                            img.displayOrder(),
-                            Boolean.TRUE.equals(img.cover())
-                    ));
+            command.updatedImages().forEach(img -> {
+                PropertyImage target = findImageById(img.imageId());
+                target.update(img.fileName(), img.filePath(), img.displayOrder(), Boolean.TRUE.equals(img.cover()));
+            });
+
             // ADD
             command.newImages().forEach(img -> {
                 var image = new PropertyImage(
@@ -386,9 +385,14 @@
                         img.filePath(),
                         img.displayOrder(),
                         img.isCover());
-                addImageToAlbum(image);
+                image.setProperty(this);
+                this.images.add(image);
             });
-            validateExactlyOneCover(this.images);
-    
+
+            // Invariantes de negocio validadas una sola vez, sobre el estado final
+            if (this.images.isEmpty()) {
+                throw new IllegalArgumentException("Property must have at least one image");
+            }
+            validateAlbumRules(this.images);
         }
     }
