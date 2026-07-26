@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET,
+        RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping(value = "/api/v1/uploads", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UploadController {
