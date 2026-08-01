@@ -142,10 +142,7 @@
     
             this.builtArea = Objects.requireNonNull(builtArea, "Property built area cannot be null");
             if(builtArea <= 0) throw new IllegalArgumentException("Property built area must be greater than 0");
-    
-            // Consistency: total area is always greater than built area
-            if (builtArea > totalArea)
-                throw new IllegalArgumentException("Built area cannot be greater than total area");
+
     
             this.bedrooms = bedrooms;
             this.bathrooms = bathrooms;
@@ -223,10 +220,7 @@
     
             Double newBuiltArea = Objects.requireNonNull(command.builtArea(), "Property built area cannot be null");
             if (newBuiltArea <= 0) throw new IllegalArgumentException("Property built area must be greater than 0");
-    
-            // Consistency: total area is always greater than built area
-            if (newBuiltArea > newTotalArea)
-                throw new IllegalArgumentException("Built area cannot be greater than total area");
+
     
             Integer newBedrooms = command.bedrooms();
             Integer newBathrooms = command.bathrooms();
