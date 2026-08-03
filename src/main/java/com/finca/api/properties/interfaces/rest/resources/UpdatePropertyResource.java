@@ -29,7 +29,7 @@ public record UpdatePropertyResource(
         String description,
         EStatusType statusType,
         Set<ETags> tags,
-        String documentationUrl,
+        Integer antique,
         boolean featured,
         List<NewImageResource> newImages,
         List<UpdateImageResource> updatedImages,

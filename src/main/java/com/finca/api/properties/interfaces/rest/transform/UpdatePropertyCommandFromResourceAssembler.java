@@ -62,7 +62,7 @@ public class UpdatePropertyCommandFromResourceAssembler {
                 resource.description(),
                 resource.statusType(),
                 resource.tags() != null ? Set.copyOf(resource.tags()) : Set.of(),
-                resource.documentationUrl(),
+                resource.antique(),
                 resource.featured(),
                 newImages,
                 updatedImages,

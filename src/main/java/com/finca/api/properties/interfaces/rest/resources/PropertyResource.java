@@ -24,7 +24,7 @@ public record PropertyResource(
         Integer bathrooms,
         Integer parkings,
         String description,
-        String documentationUrl,
+        Integer antique,
         LocalDateTime publishedAt,
         String statusType,
         Set<ETags> tags,

@@ -23,7 +23,7 @@
             Integer parkings,
             String description,
             EStatusType statusType,
-            String documentationUrl,
+            Integer antique,
             Set <ETags> tags,
             boolean featured,
             List <CreatePropertyImageCommand> images

@@ -29,7 +29,7 @@ public class CreatePropertyCommandFromResourceAssembler {
                 resource.parkings(),
                 resource.description(),
                 resource.statusType(),
-                resource.documentationUrl(),
+                resource.antique(),
                 resource.tags() != null ? Set.copyOf(resource.tags()) : Set.of(),
                 resource.featured(),
                 resource.images() != null

@@ -49,7 +49,7 @@ public class PropertyCommandServiceImpl implements PropertyCommandService {
                 command.featured(),
                 command.statusType(),
                 command.tags(),
-                command.documentationUrl(),
+                command.antique(),
                 images
         );
         return Optional.of(propertyRepository.save(property));
