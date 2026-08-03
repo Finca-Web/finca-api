@@ -69,10 +69,10 @@
         @Column(name = "description", nullable = false, columnDefinition = "TEXT")
         private String description;
     
-        @Column(name = "documentation_url")
-        private String documentationUrl;
-    
-        @Column(name = "published_at")
+    @Column(name = "antique")
+    private Integer antique;
+
+    @Column(name = "published_at")
         private LocalDateTime publishedAt;
     
         @Column(name = "status_type", nullable = false)
@@ -102,8 +102,8 @@
         public Property(String title, Double priceDollars, Double priceSoles, EDepartments department, EDistricts district, String address,
                         Double longitude, Double latitude, EPropertyType propertyType, EOperationType operationType, Double totalArea,
                         Double builtArea, Integer bedrooms, Integer bathrooms, Integer parkings, String description, boolean featured,
-                        EStatusType statusType, Set<ETags> tags, String documentationUrl, List<PropertyImage> images) {
-    
+                        EStatusType statusType, Set<ETags> tags, Integer antique, List<PropertyImage> images) {
+
             // Fields Validations
             this.title = Objects.requireNonNull(title, "Title cannot be null");
             if (title.isBlank()) throw new IllegalArgumentException("Property title cannot be blank");
@@ -163,8 +163,8 @@
     
             createAlbum(images);
     
-            this.documentationUrl = documentationUrl;
-    
+            this.antique = antique;
+
             this.statusType = Objects.requireNonNull(statusType, "Property status type cannot be null");
     
             this.tags = new HashSet<>();
@@ -229,8 +229,8 @@
             String newDescription = Objects.requireNonNull(command.description(), "Property description cannot be null");
             if (newDescription.isBlank()) throw new IllegalArgumentException("Property description cannot be blank");
     
-            String documentationUrl = command.documentationUrl();
-    
+            Integer newAntique = command.antique();
+
             EStatusType newStatusType = Objects.requireNonNull(command.statusType(), "Status type cannot be null");
     
             // After all validations, update the property fields
@@ -250,7 +250,7 @@
             this.bathrooms = newBathrooms;
             this.parkings = newParkings;
             this.description = newDescription;
-            this.documentationUrl = documentationUrl;
+            this.antique = newAntique;
             this.statusType = newStatusType;
             this.featured = command.featured();
             updateTags(command.tags());

@@ -23,7 +23,7 @@ public class PropertyResourceFromEntityAssembler {
                 entity.getBathrooms(),
                 entity.getParkings(),
                 entity.getDescription(),
-                entity.getDocumentationUrl(),
+                entity.getAntique(),
                 entity.getPublishedAt(),
                 entity.getStatusType().getDisplayName(),
                 entity.getTags(),

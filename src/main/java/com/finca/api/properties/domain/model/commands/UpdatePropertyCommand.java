@@ -25,7 +25,7 @@ public record UpdatePropertyCommand(
         String description,
         EStatusType statusType,
         Set<ETags> tags,
-        String documentationUrl,
+        Integer antique,
         boolean featured,
         List<AddImageToAlbumCommand> newImages,
         List<UpdateImageFromAlbumCommand> updatedImages,
