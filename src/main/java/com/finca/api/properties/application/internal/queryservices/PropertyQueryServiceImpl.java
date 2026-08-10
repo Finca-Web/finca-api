@@ -82,14 +82,14 @@ public class PropertyQueryServiceImpl implements PropertyQueryService {
 
                     // Operation type
                     if (query.operationType() != null) {
-                        String queryOp = query.operationType().name(); // Obtenemos el nombre del Enum
-                        String propOp = property.getOperationType().name();
-
-                        if (!queryOp.equals("BOTH")) {
-                            // Si busca "SALE" o "RENT", la propiedad debe ser exactamente esa O ser "BOTH"
-                            matches &= (propOp.equals(queryOp) || propOp.equals("BOTH"));
+                        if (query.operationType().name().equals("BOTH")) {
+                            // Si el usuario busca "Ambas", SOLO mostramos las propiedades registradas estrictamente como "BOTH"
+                            matches &= property.getOperationType() == query.operationType();
+                        } else {
+                            // Si el usuario busca "SALE" o "RENT", mostramos las de ese tipo O las que están como "BOTH"
+                            matches &= (property.getOperationType() == query.operationType() ||
+                                    property.getOperationType().name().equals("BOTH"));
                         }
-                        // Si queryOp es "BOTH", no modificamos 'matches' (es decir, deja pasar SALE, RENT y BOTH)
                     }
 
                     // Status
