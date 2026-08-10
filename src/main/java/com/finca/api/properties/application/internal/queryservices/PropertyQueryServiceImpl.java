@@ -70,8 +70,8 @@ public class PropertyQueryServiceImpl implements PropertyQueryService {
                         matches &= property.getDepartment() == query.department();
                     }
 
-                    // District (ONLY LIMA)
-                    if (query.department() == EDepartments.LIMA && query.district() != null) {
+                   // District
+                    if (query.district() != null) {
                         matches &= property.getDistrict() == query.district();
                     }
 
