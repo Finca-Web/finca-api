@@ -34,16 +34,16 @@
         @Enumerated(EnumType.STRING)
         private EDistricts district;
     
-        @Column(name = "address", nullable = false, length = 200)
-        private String address;
-    
-        @Column(name = "longitude")
-        private Double longitude;
-    
-        @Column(name = "latitude")
-        private Double latitude;
-    
-        @Column(name = "property_type", nullable = false)
+    @Column(name = "address", nullable = false, length = 200)
+    private String address;
+
+    @Column(name = "2nd_price_dollars")
+    private Double secondPriceDollars;
+
+    @Column(name = "2nd_price_soles")
+    private Double secondPriceSoles;
+
+    @Column(name = "property_type", nullable = false)
         @Enumerated(EnumType.STRING)
         private EPropertyType propertyType;
     
@@ -100,7 +100,7 @@
     
         // Creation constructor with business rules validations
         public Property(String title, Double priceDollars, Double priceSoles, EDepartments department, EDistricts district, String address,
-                        Double longitude, Double latitude, EPropertyType propertyType, EOperationType operationType, Double totalArea,
+                        Double secondPriceDollars, Double secondPriceSoles, EPropertyType propertyType, EOperationType operationType, Double totalArea,
                         Double builtArea, Integer bedrooms, Integer bathrooms, Integer parkings, String description, boolean featured,
                         EStatusType statusType, Set<ETags> tags, Integer antique, List<PropertyImage> images) {
 
@@ -131,9 +131,9 @@
             this.address = Objects.requireNonNull(address, "Property address cannot be null");
             if(address.isBlank()) throw new IllegalArgumentException("Property address cannot be blank");
     
-            this.longitude = longitude;
-            this.latitude = latitude;
-    
+            this.secondPriceDollars = secondPriceDollars;
+            this.secondPriceSoles = secondPriceSoles;
+
             this.propertyType = Objects.requireNonNull(propertyType, "Property type cannot be null");
             this.operationType = Objects.requireNonNull(operationType, "Operation type cannot be null");
     
@@ -209,8 +209,8 @@
             String newAddress = Objects.requireNonNull(command.address(), "Property address cannot be null");
             if (newAddress.isBlank()) throw new IllegalArgumentException("Property address cannot be blank");
     
-            Double newLongitude = command.longitude();
-            Double newLatitude = command.latitude();
+            Double newSecondPriceDollars = command.secondPriceDollars();
+            Double newSecondPriceSoles = command.secondPriceSoles();
     
             EPropertyType newPropertyType = Objects.requireNonNull(command.propertyType(), "Property type cannot be null");
             EOperationType newOperationType = Objects.requireNonNull(command.operationType(), "Operation type cannot be null");
@@ -240,8 +240,8 @@
             this.department = newDepartment;
             this.district = newDistrict;
             this.address = newAddress;
-            this.longitude = newLongitude;
-            this.latitude = newLatitude;
+            this.secondPriceDollars = newSecondPriceDollars;
+            this.secondPriceSoles = newSecondPriceSoles;
             this.propertyType = newPropertyType;
             this.operationType = newOperationType;
             this.totalArea = newTotalArea;
