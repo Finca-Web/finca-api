@@ -2,6 +2,7 @@ package com.finca.api.properties.domain.model.valueobjects;
 
 public enum EDistricts {
     ANCON("Ancón"),
+    ASIA ("Asia"),
     ATE("Ate"),
     BARRANCO("Barranco"),
     BREÑA("Breña"),
