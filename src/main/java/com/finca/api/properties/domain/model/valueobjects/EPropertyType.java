@@ -7,7 +7,8 @@ public enum EPropertyType {
     LAND("Terreno"),
     COMMERCIAL("Local Comercial"),
     OFFICE("Oficina"),
-    INDUSTRIAL("Industrial");
+    INDUSTRIAL("Industrial"),
+    HOTEL("Hotel");
 
     private final String displayName;
 
